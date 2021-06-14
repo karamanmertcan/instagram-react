@@ -94,3 +94,35 @@ export const getUserByUsername = async username => {
     docId: item.id
   }));
 };
+
+export const getUserPhotosByUsername = async username => {
+  const [user] = await getUserByUsername(username);
+  const result = await firebase
+    .firestore()
+    .collection('photos')
+    .where('userId', '==', user.userId)
+    .get();
+
+  const photos = result.docs.map(item => ({
+    ...item.data(),
+    docId: item.id
+  }));
+
+  return photos;
+};
+
+export const isUserFollowingProfile = async (loggedInUsername, profileUserId) => {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('username', '==', loggedInUsername)
+    .where('following', 'array-contains', profileUserId)
+    .get();
+
+  const [response = {}] = result.docs.map(item => ({
+    ...item.data(),
+    docId: item.id
+  }));
+
+  return response.userId;
+};
