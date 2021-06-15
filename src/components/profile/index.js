@@ -19,8 +19,6 @@ const Profile = ({ user }) => {
   useEffect(() => {
     const getProfileInfoAndPhotos = async () => {
       const photos = await getUserPhotosByUsername(user.username);
-      console.log(photos);
-
       dispatch({ profile: user, photosCollection: photos, followerCount: user.followers.length });
     };
 
