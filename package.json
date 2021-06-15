@@ -20,8 +20,8 @@
     "build:css": "postcss src/styles/tailwind.css -o src/styles/app.css",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/app.css --watch",
     "react-scripts:start": "sleep 5 && react-scripts start",
-    "start": "run-p watch:css react-scripts:start",
-    "build": "runn-s build:css react-scripts:build",
+    "start": "run-p watch:css react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
